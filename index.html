@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Trivia Game - Week 5</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	 <!-- JQuery -->
+  	<script src="https://code.jquery.com/jquery.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Harry Potter Trivia Game</h1>
+			<p>Test your knowledge of Harry's World</p>
+		</div>
+		
+    <!-- <div id="wrapper"> -->
+
+      <!-- Div containing our stopwatch controls -->
+  <!--     <div id="buttons">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+        <button id="lap">Lap</button>
+      </div>
+
+      <div id="laps"></div>
+
+    </div> -->
+
+		<div class="row">		
+			<div class="col-xs-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Time Remaining:</h3>		
+					</div>
+					<div class="panel-body">
+						<h2><span id="countdownTimer"></span></h2>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-body question">
+			</div>	
+		</div>
+
+		<div class="answers">
+			<div>
+				<button class="btn btn-primary btn-lg" class="answerchoice" id="button0"><h4>A</h4></button>
+			</div>
+			<div>
+				<button class="btn btn-primary btn-lg" class="answerchoice" id="button1"><h4>B</h4></button>
+			</div>
+			<div>
+				<button class="btn btn-primary btn-lg" class="answerchoice" id="button2"><h4>C</h4></button>
+			</div>
+			<div>
+				<button class="btn btn-primary btn-lg" class="answerchoice" id="button3"><h4>D</h4></button>
+			</div>
+		</div>
+		
+	</div>
+
+	<script type="text/javascript" src="assets/javascript/app.js"></script>
+
+</body>
+
+<!-- Footer -->
+<footer>
+<div id="footer">
+  <div class="container">
+    <p class="muted credit">Copyright &copy; 2017 Enrico Bernardo</p>
+  </div>
+</div>
+</footer>
+
+</html>

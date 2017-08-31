@@ -1,0 +1,26 @@
+body {
+	/*background: url("../images/clouds.jpg");*/
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+}
+
+h1 {
+  padding-bottom: 20px;
+  font-size: 40px;
+  line-height: 49px;
+  border-bottom: 3px solid #ddd;
+  float=right;
+}
+
+h2 {
+  font-size:30px;	
+}
+
+.jumbotron {
+	background: url("../images/harry1.jpg");
+	padding: 20px;
+}

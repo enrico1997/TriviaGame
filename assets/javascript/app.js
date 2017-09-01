@@ -5,7 +5,7 @@ window.onload = function() {
   // $("#stop").click(stopwatch.stop);
   // $("#reset").click(stopwatch.reset);
   // $("#start").click(stopwatch.start);
-  $("#countdownTimer").html("00:12");
+  $("#countdownTimer").html("00:09:75");
 
 };
 
@@ -19,8 +19,8 @@ var clockRunning = false;
 var correctCount = 0;
 var wrongCount = 0;
 var unansweredCount = 0;
-
 var index = 0;
+var questionCounter = 0;
 
 //Questions Object
 //********************************
@@ -68,34 +68,32 @@ function outputQuestion(question) {
   $(".question").html("<h3>" + question.Question + "</h3>");
 
   for (var i = 0; i < question.Answers.length; i++) {
-    $("#button" + i).text(question.Answers[i].text).attr("value", question.Answers[i].isCorrect).show();
+    $("#button" + i)
+      .text(question.Answers[i].text)
+      .attr("value", question.Answers[i].isCorrect)
+      .on('click', function() {
+        if ($(this).attr("value") === "true") {
+          answerCorrect();
+        } else {
+          answerWrong();
+        }
+      })
+      .show();
+    }
   }
-}
-
-function getAnswer() {
-  $('.answerchoice').on('click', function() {
-    console.log('alert', index);
-    index++;
-    console.log ('click', index);
-    outputQuestion(questionArray[index]);
-  })
-
-  // Do "if" for answerCorrect here
-  // If index is greater than questionArray length, call showScore();
-}
 
 function startGame() {
-  //Reset Variables
+  $('#countdownTimer').show();
+  $('.answers').show();
 
   $('.question').append('<button class="btn btn-primary btn-lg" id="startButton">Start</button>');
   
   $('#startButton').on('click', function() {
     $(this).hide();
-    // stopwatch.start();
-    outputQuestion(questionArray[index]);
-    console.log(questionArray[index]);
 
-  getAnswer();
+  
+  outputQuestion(questionArray[index]);
+  console.log(questionArray[index]);
 
   });
 
@@ -105,19 +103,22 @@ function startGame() {
 function answerCorrect() {
   correctCount++;
   alert("Correct!");
-  console.log("correct");
+  console.log("Right count: " + correctCount);
+  nextQuestion();
 }
 
 function answerWrong() {
   wrongCount++;
   alert("Incorrect!");
-  console.log("wrong");
+  console.log("Wrong Count: " + wrongCount);
+  nextQuestion();
 }
 
 function answerUnanswered() {
   unansweredCount++;
   alert("Time's Up!");
-  console.log("wrong due to time's up");
+  console.log("Not Answered: " + unansweredCount);
+  nextQuestion();
 }
 
 function showScore() {
@@ -125,20 +126,45 @@ function showScore() {
   $('.question').append("<h2><p>" + correctCount + " correct</p></h2>");
   $('.question').append("<h2><p>" + wrongCount + " wrong</p></h2>");
   $('.question').append("<h2><p>" + unansweredCount + " unanswered</p></h2>");
-  countdownTimer.stop();
-  $('.timer').empty();
+  stopwatch.stop();
+  $('#countdownTimer').empty();
+  $('.answers').empty();
+  startGame();
+}
+
+function nextQuestion() {
+  if (index < questionArray.length - 1) {
+    index++;
+    console.log("?index: " + questionArray.length);
+    outputQuestion(questionArray[index]);
+    console.log("questionArray: " + questionArray[index]);
+  } else {
+    showScore();
+  }
+}
+
+function outOfTime() {
+  var clock = setInterval(nineSeconds, 1000 * 9);
+  function nineSeconds() {
+    if (counter === 0) {
+      clearInterval(clock);
+      answerUnanswered();
+    } else if (counter > 0) {
+      counter--;
+    }
+  }
 }
 
 
 //  Stopwatch Object
 //********************************
 var stopwatch = {
-  time: 12, //time limit
+  time: 9, //time limit
   lap: 1,
 
   reset: function() {
-    stopwatch.time = 12;
-    $("#countdownTimer").html("00:12");
+    stopwatch.time = 9;
+    $("#countdownTimer").html("00:09:75");
   },
 
   start: function() {

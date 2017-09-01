@@ -6,6 +6,13 @@ h1,
 h2,
 h3 {
   font-weight: 700;
+  font-family: 'HARRYP__', 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+
+}
+
+@ font-face {
+  font-family: HARRYP__;
+  scr: url(HARRYP__.TTF);
 }
 
 h1 {
@@ -23,4 +30,8 @@ h2 {
 .jumbotron {
 	background: url("../images/harry1.jpg");
 	padding: 20px;
+}
+
+footer {
+  padding-top: 40px;
 }

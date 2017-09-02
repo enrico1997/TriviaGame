@@ -1,14 +1,3 @@
-//  This code will run as soon as the page loads.
-window.onload = function() {
-
-  //  Click events are done for us:
-  // $("#stop").click(stopwatch.stop);
-  // $("#reset").click(stopwatch.reset);
-  // $("#start").click(stopwatch.start);
-  $("#countdownTimer").html("00:09:75");
-
-};
-
 //Global Variables
 //********************************
 //  Variable that will hold our setInterval that runs the stopwatch

@@ -89,8 +89,7 @@ function outputQuestion() {
         .addClass ('btn btn-primary btn-lg btn-group-vertical')
         .data('answer-id', i)
         .text(questionArray[questionCounter].Answers[i].text)
-        // .attr("value", questionArray[questionCounter].Answers[i].isCorrect)
-        // .show()
+        .show()
         .on('click', function() {
           // Process the answer
           answerQuestion($(this).data('answer-id'));
@@ -143,7 +142,7 @@ function answerQuestion(id) {
   var imgHTML = "<img class='center-block imgCorrect' src='assets/images/ginny.jpg'>";
   gameHTML = answerText + imgHTML;
   $(".answers").html(gameHTML);
-  setTimeout(nextQuestion, 3000);
+  setTimeout(nextQuestion, 1500);
 }
 
 function showScore() {
@@ -154,7 +153,6 @@ function showScore() {
   stopwatch.stop();
   $('#countdownTimer').empty();
   $('.answers').empty();
-  //index=0;
   startGame();
 }
 
@@ -164,28 +162,15 @@ function nextQuestion() {
   // If question is valid, display it
   // otherwise show the final score
   if (typeof questionArray[questionCounter] !== 'undefined') {
-    // Show the next Question.
+    // Show the next Question
     outputQuestion();
   } else {
-    // Reset Question Counter.
+    // Reset Question Counter
     questionCounter = 0;
-    // Show the final Score.
+    // Show the final Score
     showScore();
   }
 }
-
-function outOfTime() {
-  var clock = setInterval(nineSeconds, 1000 * 9);
-  function nineSeconds() {
-    if (counter === 0) {
-      clearInterval(clock);
-      answerUnanswered();
-    } else if (counter > 0) {
-      counter--;
-    }
-  }
-}
-
 
 //  Stopwatch Object
 //********************************

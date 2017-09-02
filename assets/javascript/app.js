@@ -75,8 +75,9 @@ var questionArray = [
 ];
 
 function outputQuestion() {
+  // Show the new question
   if (typeof questionArray[questionCounter] !== 'undefined') {
-    // stopwatch.reset();
+    stopwatch.reset();
     $(".question").html("<h3>" + questionArray[questionCounter].Question + "</h3>");
     console.log(questionArray[questionCounter]);
 
@@ -90,11 +91,12 @@ function outputQuestion() {
         // .attr("value", questionArray[questionCounter].Answers[i].isCorrect)
         // .show()
         .on('click', function() {
+          // Process the answer
           answerQuestion($(this).data('answer-id'));
           // Display next question
           nextQuestion();
         })
-        .appendTo('#answers');
+        .appendTo('.answers');
     }
   }
   // showScore();
@@ -121,6 +123,19 @@ function startGame() {
       stopwatch.start();
     })
   );
+}
+
+function answerQuestion(id) {
+  // Find selected answer to current question.
+  var answer = questionArray[questionCounter].Answers[id];
+  // Update correct/incorrect counter.
+  if (typeof answer === 'undefined') {
+    unansweredCount++;
+  } else if (answer.isCorrect) {
+    correctCount++;
+  } else {
+    wrongCount++;
+  }
 }
 
 function answerCorrect() {
@@ -155,15 +170,31 @@ function showScore() {
   startGame();
 }
 
-function nextQuestion() {
-  if (index < questionArray.length - 1) {
-    ++index;
-    console.log("?index: " + index);
-    console.log(questionArray[index]);
-    outputQuestion(questionArray[index]);
-    console.log(questionArray[index]);
+// function nextQuestion() {
+//   if (index < questionArray.length - 1) {
+//     ++index;
+//     console.log("?index: " + index);
+//     console.log(questionArray[index]);
+//     outputQuestion(questionArray[index]);
+//     console.log(questionArray[index]);
 
+//   } else {
+//     showScore();
+//   }
+// }
+
+function nextQuestion() {
+  // set next question
+  questionCounter++;
+  // If question is valid, display it
+  // otherwise show the final score
+  if (typeof questionArray[questionCounter] !== 'undefined') {
+    // Show the next Question.
+    outputQuestion();
   } else {
+    // Reset Question Counter.
+    questionCounter = 0;
+    // Show the final Score.
     showScore();
   }
 }

@@ -1,5 +1,6 @@
 body {
-	/*background: url("../images/clouds.jpg");*/
+	background: url("../images/background1.jpg");
+  background-size: 140% auto;
 }
 
 h1,
@@ -16,13 +17,16 @@ h3 {
 }
 
 
-h1 {
+h1, .correctText {
   font-family: HARRYP__;
   padding-bottom: 20px;
   font-size: 40px;
   line-height: 49px;
-  border-bottom: 3px solid #ddd;
   float=right;
+}
+
+h1 {
+  border-bottom: 3px solid #ddd;
 }
 
 h2 {
@@ -30,8 +34,13 @@ h2 {
 }
 
 .jumbotron {
-	background: url("../images/harry1.jpg");
+	background: url("../images/harry.jpg");
+  background-size: 100% 100%;
 	padding: 20px;
+}
+
+#startButton {
+  float: right;
 }
 
 footer {

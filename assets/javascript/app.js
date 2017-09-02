@@ -86,6 +86,7 @@ function outputQuestion() {
     // Show the new answers
     for (var i = 0; i < questionArray[questionCounter].Answers.length; i++) {
       $("<button>")
+        .addClass ('btn btn-primary btn-lg btn-group-vertical')
         .data('answer-id', i)
         .text(questionArray[questionCounter].Answers[i].text)
         // .attr("value", questionArray[questionCounter].Answers[i].isCorrect)
@@ -94,21 +95,21 @@ function outputQuestion() {
           // Process the answer
           answerQuestion($(this).data('answer-id'));
           // Display next question
-          nextQuestion();
+          // nextQuestion();
         })
         .appendTo('.answers');
     }
   }
-  // showScore();
 }
 
 function startGame() {
+  // Reset Variables
+  correctCount = 0;
+  wrongCount = 0;
+  unansweredCount = 0;
+
   //Display timer
   $('#countdownTimer').show();
-
-  //Show or hide answers
-  // $('.answers').show();
-  // $('.answers').empty();
 
   // Create Start button
   $('.question').append(
@@ -126,36 +127,23 @@ function startGame() {
 }
 
 function answerQuestion(id) {
-  // Find selected answer to current question.
+  // Find selected answer to current question
   var answer = questionArray[questionCounter].Answers[id];
-  // Update correct/incorrect counter.
+  // Update correct/incorrect counter
   if (typeof answer === 'undefined') {
     unansweredCount++;
+    var answerText = "<p class='correctText text-center'>Sorry you're out of time!</p>";
   } else if (answer.isCorrect) {
     correctCount++;
+    var answerText = "<p class='correctText text-center'>You got it, GREAT spell!</p>";
   } else {
     wrongCount++;
+    var answerText = "<p class='correctText text-center'>Sorry wrong answer, your wand broke!</p>";
   }
-}
-
-function answerCorrect() {
-  correctCount++;
-  console.log("Correct!");
-  // alert("Correct!");
-  console.log("Right count: " + correctCount);
-}
-
-function answerWrong() {
-  wrongCount++;
-  console.log("Incorrect!");
-  //alert("Incorrect!");
-  console.log("Wrong Count: " + wrongCount);
-}
-
-function answerUnanswered() {
-  unansweredCount++;
-  // alert("Time's Up!");
-  console.log("Not Answered: " + unansweredCount);
+  var imgHTML = "<img class='center-block imgCorrect' src='assets/images/ginny.jpg'>";
+  gameHTML = answerText + imgHTML;
+  $(".answers").html(gameHTML);
+  setTimeout(nextQuestion, 3000);
 }
 
 function showScore() {
@@ -169,19 +157,6 @@ function showScore() {
   //index=0;
   startGame();
 }
-
-// function nextQuestion() {
-//   if (index < questionArray.length - 1) {
-//     ++index;
-//     console.log("?index: " + index);
-//     console.log(questionArray[index]);
-//     outputQuestion(questionArray[index]);
-//     console.log(questionArray[index]);
-
-//   } else {
-//     showScore();
-//   }
-// }
 
 function nextQuestion() {
   // set next question

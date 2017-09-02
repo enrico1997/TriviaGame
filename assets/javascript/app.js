@@ -126,19 +126,21 @@ function startGame() {
 }
 
 function answerQuestion(id) {
+  outOfTime();
   // Find selected answer to current question
   var answer = questionArray[questionCounter].Answers[id];
   // Update correct/incorrect counter
   if (typeof answer === 'undefined') {
     unansweredCount++;
     var answerText = "<p class='correctText text-center'>Sorry you're out of time!</p>";
-  } else if (answer.isCorrect) {
+   } else if (answer.isCorrect) {
     correctCount++;
     var answerText = "<p class='correctText text-center'>You got it, GREAT spell!</p>";
-  } else {
+    } else {
     wrongCount++;
     var answerText = "<p class='correctText text-center'>Sorry wrong answer, your wand broke!</p>";
   }
+  
   var imgHTML = "<img class='center-block imgCorrect' src='assets/images/ginny.jpg'>";
   gameHTML = answerText + imgHTML;
   $(".answers").html(gameHTML);
@@ -171,6 +173,19 @@ function nextQuestion() {
     showScore();
   }
 }
+
+function outOfTime() {
+  var clock = setInterval(nineSeconds, 1000 * 10);
+  function nineSeconds() {
+    if (answer === 0) {
+      clearInterval(clock);
+      answerUnanswered();
+    } else if (answer > 0) {
+      answer--;
+    }
+  }
+}
+
 
 //  Stopwatch Object
 //********************************

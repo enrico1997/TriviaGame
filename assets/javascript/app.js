@@ -27,37 +27,61 @@ var questionCounter = 0;
 var questionArray = [
   {
 
-    Question : "What is the fruit?",
+    Question : "What are Harry's parents names?",
     Answers : [
-      { isCorrect: true, text: "pineapple"},
-      { isCorrect: false, text: "orange"},
-      { isCorrect: false, text: "jackfruit"},
-      { isCorrect: false, text: "kiwi"},
+      { isCorrect: false, text: "Ron and Herminone"},
+      { isCorrect: false, text: "Vernon and Jenny"},
+      { isCorrect: true, text: "James and Lily"},
+      { isCorrect: false, text: "Rico and Emma"},
     ],
-    correctImg : "assets/images/harry.jpg"
+    correctImg : "assets/images/parents.jpg"
   }, 
   {
 
-    Question : "What is the animal?",
+    Question : "What is the platform number that takes Harry to his school?",
     Answers : [
-      { isCorrect: true, text: "robin"},
-      { isCorrect: false, text: "elephant"},
-      { isCorrect: false, text: "lion"},
-      { isCorrect: false, text: "tiger"},
+      { isCorrect: false, text: "B-52"},
+      { isCorrect: true, text: "9 3/4"},
+      { isCorrect: false, text: "3.14159"},
+      { isCorrect: false, text: "Eleven Seventy-two"},
     ],
-    correctImg : "assets/images/harry.jpg"
+    correctImg : "assets/images/nine.jpg"
   }, 
   {
 
-    Question : "What is the color?",
+    Question : "What is name of Harry's school?",
     
     Answers : [
-      { isCorrect: true, text: "blue"},
-      { isCorrect: false, text: "green"},
-      { isCorrect: false, text: "red"},
-      { isCorrect: false, text: "yellow"}
+      { isCorrect: true, text: "Hogwarts School of Witchcraft and Wizardry"},
+      { isCorrect: false, text: "Xavier's School for Gifted Youngsters"},
+      { isCorrect: false, text: "Glenbrook North"},
+      { isCorrect: false, text: "Cindy Mancini Cheerleading Camp"}
     ],
-    correctImg : "harry.jpg"
+    correctImg : "assets/images/hogwarts.jpg"
+  },
+  {
+
+    Question : "What sport does Harry play?",
+    
+    Answers : [
+      { isCorrect: false, text: "Cricket"},
+      { isCorrect: false, text: "Beach Volleyball"},
+      { isCorrect: false, text: "Cycling"},
+      { isCorrect: true, text: "Quidditch"}
+    ],
+    correctImg : "assets/images/quidditch.jpg"
+  },
+  {
+
+    Question : "Who did Harry marry?",
+    
+    Answers : [
+      { isCorrect: false, text: "Sloane Peterson"},
+      { isCorrect: true, text: "Ginny Weasley"},
+      { isCorrect: false, text: "Sharpay Evans"},
+      { isCorrect: false, text: "Jyn Erso"}
+    ],
+    correctImg : "assets/images/ginny.jpg"
   },
 ];
 

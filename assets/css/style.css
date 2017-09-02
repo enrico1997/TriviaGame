@@ -6,16 +6,18 @@ h1,
 h2,
 h3 {
   font-weight: 700;
-  font-family: 'HARRYP__', 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
 
 }
 
-@ font-face {
+@font-face {
   font-family: HARRYP__;
-  scr: url(HARRYP__.TTF);
+  src: url(HARRYP__.TTF);
 }
+
 
 h1 {
+  font-family: HARRYP__;
   padding-bottom: 20px;
   font-size: 40px;
   line-height: 49px;
@@ -33,5 +35,6 @@ h2 {
 }
 
 footer {
+  font-family: HARRYP__;
   padding-top: 40px;
 }

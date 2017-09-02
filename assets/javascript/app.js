@@ -74,56 +74,58 @@ var questionArray = [
   },
 ];
 
-
-
 function outputQuestion() {
-  for (var j = 0; j < questionArray.length; j++) {
-    // stopwatch.reset();
-    $(".question").html("<h3>" + questionArray[j].Question + "</h3>");
-    console.log(questionArray[j]);
+  while (questionCounter < questionArray.length) {
+    stopwatch.reset();
+    $(".question").html("<h3>" + questionArray[questionCounter].Question + "</h3>");
+    console.log(questionArray[questionCounter]);
 
-    for (var i = 0; i < questionArray[j].Answers.length; i++) {
-      $("#button" + i)
-        .text(questionArray[j].Answers[i].text)
-        .attr("value", questionArray[j].Answers[i].isCorrect)
+    // Remove the old answers.
+    $(".answers").empty();
+    // Show the new answers.
+    for (var i = 0; i < questionArray[questionCounter].Answers.length; i++) {
+      $("<button>")
+        .data('answer-id', i)
+        .text(questionArray[questionCounter].Answers[i].text)
+        // .attr("value", questionArray[questionCounter].Answers[i].isCorrect)
         .show()
         .on('click', function() {
-          if($(this).attr("value") === "true") {
-            answerCorrect();
-          } else {
-            answerWrong();          
-          }
-        //nextQuestion();
-        });
+          answerQuestion($(this).data('answer-id'));
+          nextQuestion();
+        })
+        .appendTo('#answers');
     }
   }
-  showScore();
+  // showScore();
 }
 
 function startGame() {
+  //Display timer
   $('#countdownTimer').show();
-  $('.answers').show();
 
-  $('.question').append('<button class="btn btn-primary btn-lg" id="startButton">Start</button>');
-  
-  $('#startButton').on('click', function() {
-    $(this).hide();
+  //Show or hide answers
+  // $('.answers').show();
+  // $('.answers').empty();
 
-    stopwatch.start();
-
-  console.log(questionArray[index]);
-  outputQuestion();
-  console.log(questionArray[index]);
-
-  });
-
-
+  // Create Start button
+  $('.question').append(
+    $('<button>Start</button>')
+    .addClass ('btn btn-primary btn-lg')
+    .attr('id', 'startButton')
+    .on('click', function() {
+      // Hide Start button
+      $(this).hide();
+      // Output next (first) question
+      outputQuestion();
+      stopwatch.start();
+    })
+  );
 }
 
 function answerCorrect() {
   correctCount++;
   console.log("Correct!");
-  //alert("Correct!");
+  // alert("Correct!");
   console.log("Right count: " + correctCount);
 }
 
@@ -136,7 +138,7 @@ function answerWrong() {
 
 function answerUnanswered() {
   unansweredCount++;
-  alert("Time's Up!");
+  // alert("Time's Up!");
   console.log("Not Answered: " + unansweredCount);
 }
 

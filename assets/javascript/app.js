@@ -75,22 +75,23 @@ var questionArray = [
 ];
 
 function outputQuestion() {
-  while (questionCounter < questionArray.length) {
-    stopwatch.reset();
+  if (typeof questionArray[questionCounter] !== 'undefined') {
+    // stopwatch.reset();
     $(".question").html("<h3>" + questionArray[questionCounter].Question + "</h3>");
     console.log(questionArray[questionCounter]);
 
-    // Remove the old answers.
+    // Remove the old answers
     $(".answers").empty();
-    // Show the new answers.
+    // Show the new answers
     for (var i = 0; i < questionArray[questionCounter].Answers.length; i++) {
       $("<button>")
         .data('answer-id', i)
         .text(questionArray[questionCounter].Answers[i].text)
         // .attr("value", questionArray[questionCounter].Answers[i].isCorrect)
-        .show()
+        // .show()
         .on('click', function() {
           answerQuestion($(this).data('answer-id'));
+          // Display next question
           nextQuestion();
         })
         .appendTo('#answers');

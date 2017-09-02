@@ -58,29 +58,34 @@ var questionArray = [
       { isCorrect: false, text: "yellow"}
     ],
     correctImg : "harry.jpg"
-  }
+  },
 ];
 
 
 
-function outputQuestion(question) {
-  stopwatch.reset();
-  $(".question").html("<h3>" + question.Question + "</h3>");
+function outputQuestion() {
+  for (var j = 0; j < questionArray.length; j++) {
+    // stopwatch.reset();
+    $(".question").html("<h3>" + questionArray[j].Question + "</h3>");
+    console.log(questionArray[j]);
 
-  for (var i = 0; i < question.Answers.length; i++) {
-    $("#button" + i)
-      .text(question.Answers[i].text)
-      .attr("value", question.Answers[i].isCorrect)
-      .on('click', function() {
-        if ($(this).attr("value") === "true") {
-          answerCorrect();
-        } else {
-          answerWrong();
-        }
-      })
-      .show();
+    for (var i = 0; i < questionArray[j].Answers.length; i++) {
+      $("#button" + i)
+        .text(questionArray[j].Answers[i].text)
+        .attr("value", questionArray[j].Answers[i].isCorrect)
+        .show()
+        .on('click', function() {
+          if($(this).attr("value") === "true") {
+            answerCorrect();
+          } else {
+            answerWrong();          
+          }
+        //nextQuestion();
+        });
     }
   }
+  showScore();
+}
 
 function startGame() {
   $('#countdownTimer').show();
@@ -91,8 +96,10 @@ function startGame() {
   $('#startButton').on('click', function() {
     $(this).hide();
 
-  
-  outputQuestion(questionArray[index]);
+    stopwatch.start();
+
+  console.log(questionArray[index]);
+  outputQuestion();
   console.log(questionArray[index]);
 
   });
@@ -102,23 +109,22 @@ function startGame() {
 
 function answerCorrect() {
   correctCount++;
-  alert("Correct!");
+  console.log("Correct!");
+  //alert("Correct!");
   console.log("Right count: " + correctCount);
-  nextQuestion();
 }
 
 function answerWrong() {
   wrongCount++;
-  alert("Incorrect!");
+  console.log("Incorrect!");
+  //alert("Incorrect!");
   console.log("Wrong Count: " + wrongCount);
-  nextQuestion();
 }
 
 function answerUnanswered() {
   unansweredCount++;
   alert("Time's Up!");
   console.log("Not Answered: " + unansweredCount);
-  nextQuestion();
 }
 
 function showScore() {
@@ -129,15 +135,18 @@ function showScore() {
   stopwatch.stop();
   $('#countdownTimer').empty();
   $('.answers').empty();
+  //index=0;
   startGame();
 }
 
 function nextQuestion() {
   if (index < questionArray.length - 1) {
-    index++;
-    console.log("?index: " + questionArray.length);
+    ++index;
+    console.log("?index: " + index);
+    console.log(questionArray[index]);
     outputQuestion(questionArray[index]);
-    console.log("questionArray: " + questionArray[index]);
+    console.log(questionArray[index]);
+
   } else {
     showScore();
   }
